@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Builder</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div id="form-container">
+        <input type="text" id="username" placeholder="Enter your username">
+        <input type="text" id="name" placeholder="Enter your name">
+        <input type="email" id="email" placeholder="Enter your email">
+        <textarea id="education" placeholder="Enter your education"></textarea>
+        <textarea id="work-experience" placeholder="Enter your work experience"></textarea>
+        <textarea id="skills" placeholder="Enter your skills"></textarea>
+        <button id="generate-resume">Generate Resume</button>
+        <p id="resume-url"></p>
+    </div>
+
+    <script>
+        document.getElementById('generate-resume').addEventListener('click', () => {
+            const username = document.getElementById('username').value.trim();
+            if (!username) {
+                alert('Please enter a username.');
+                return;
+            }
+
+            const resumeData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                education: document.getElementById('education').value,
+                workExperience: document.getElementById('work-experience').value,
+                skills: document.getElementById('skills').value
+            };
+
+            // Save resume data in localStorage
+            localStorage.setItem(`resume_${username}`, JSON.stringify(resumeData));
+
+            // Generate the resume URL
+            const resumeURL = `resume.html?username=${encodeURIComponent(username)}`;
+            document.getElementById('resume-url').innerHTML = `Your resume URL: <a href="${resumeURL}" target="_blank">${resumeURL}</a>`;
+        });
+    </script>
+</body>
+</html>

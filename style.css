@@ -1,0 +1,123 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+
+body {
+    background-color: #1e1e1e; /* Dark background */
+    color: #e0e0e0; /* Light text for contrast */
+    padding: 20px;
+    font-size: 16px;
+}
+
+
+#resume-content {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #2c2c2c; /* Slightly lighter dark background */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+
+h1, h2 {
+    color: #ff5757; /* Vibrant pinkish-red color */
+    margin-bottom: 10px;
+}
+
+h1 {
+    font-size: 32px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+h2 {
+    font-size: 24px;
+    border-bottom: 2px solid #ff5757;
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+}
+
+/* Paragraph and Text Styling */
+p {
+    margin-bottom: 15px;
+    line-height: 1.5;
+}
+
+#resume-url {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #ff5757; /* Vibrant color for the URL */
+    text-align: center;
+}
+
+/* Input Fields and Buttons */
+input[type="text"], input[type="email"], textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #444444;
+    background-color: #333333;
+    color: #e0e0e0;
+    border-radius: 5px;
+}
+
+input[type="text"]::placeholder,
+input[type="email"]::placeholder,
+textarea::placeholder {
+    color: #aaaaaa;
+}
+
+button {
+    background-color: #ff5757; /* Vibrant button color */
+    color: #ffffff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: block;
+    margin: 20px auto;
+}
+
+button:hover {
+    background-color: #ff2a2a; /* Darker shade on hover */
+}
+
+
+#download-pdf {
+    background-color: #ff5757; /* Vibrant button color */
+    color: #ffffff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 20px;
+}
+
+#download-pdf:hover {
+    background-color: #ff2a2a; /* Darker shade on hover */
+}
+button {
+    background-color: #ff4d4d; /* Vibrant pinkish-red */
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #ff6666;
+}
+

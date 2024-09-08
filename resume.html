@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume</title>
+    <link rel="stylesheet" href="./style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+    <div id="resume-content">
+        <h1 id="resume-name"></h1>
+        <p id="resume-email"></p>
+        <h2>Education</h2>
+        <p id="resume-education"></p>
+        <h2>Work Experience</h2>
+        <p id="resume-work-experience"></p>
+        <h2>Skills</h2>
+        <p id="resume-skills"></p>
+
+        <button id="download-pdf">Download PDF</button>
+        <button id="share-link">Share Resume Link</button>
+    </div>
+
+    <script>
+        // Function to get query parameter from URL
+        function getQueryParameter(name) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name);
+        }
+
+        window.onload = () => {
+            const username = getQueryParameter('username');
+            if (username) {
+                const resumeData = JSON.parse(localStorage.getItem(`resume_${username}`) || '{}');
+
+                // Populate resume with data
+                document.getElementById('resume-name').innerText = resumeData.name || 'Name not available';
+                document.getElementById('resume-email').innerText = resumeData.email || 'Email not available';
+                document.getElementById('resume-education').innerText = resumeData.education || 'Education not available';
+                document.getElementById('resume-work-experience').innerText = resumeData.workExperience || 'Work Experience not available';
+                document.getElementById('resume-skills').innerText = resumeData.skills || 'Skills not available';
+            } else {
+                alert('No username found in the URL.');
+            }
+        };
+
+        // PDF Download Feature
+        document.getElementById('download-pdf').addEventListener('click', () => {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+
+            doc.setFontSize(20);
+            doc.text('Resume', 10, 10);
+
+            doc.setFontSize(12);
+            doc.text(`Name: ${document.getElementById('resume-name').innerText}`, 10, 30);
+            doc.text(`Email: ${document.getElementById('resume-email').innerText}`, 10, 40);
+            doc.text(`Education: ${document.getElementById('resume-education').innerText}`, 10, 50);
+            doc.text(`Work Experience: ${document.getElementById('resume-work-experience').innerText}`, 10, 60);
+            doc.text(`Skills: ${document.getElementById('resume-skills').innerText}`, 10, 70);
+
+            doc.save('resume.pdf');
+        });
+
+        // Share Resume Link Feature
+        document.getElementById('share-link').addEventListener('click', () => {
+            const username = getQueryParameter('username');
+            if (username) {
+                const shareURL = `${window.location.origin}/resume.html?username=${username}`;
+                navigator.clipboard.writeText(shareURL).then(() => {
+                    alert('Resume link copied to clipboard: ' + shareURL);
+                }, () => {
+                    alert('Failed to copy the resume link.');
+                });
+            } else {
+                alert('No username found to generate the shareable link.');
+            }
+        });
+    </script>
+</body>
+</html>
